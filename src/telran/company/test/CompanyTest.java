@@ -122,7 +122,17 @@ CompanyService company;                                       // спросит�
 
 	@Test
 	void testGetEmployeesBySalary() {
-		// TODO HW №22
+		List<Employee> listAll = company.getEmployeesBySalary(0, 20000);
+		Employee [] actualAll = listAll.toArray(new Employee[] {});
+		Arrays.sort(actualAll);
+		assertArrayEquals(employees,actualAll);
+		List <Employee> listEmpty = company.getEmployeesBySalary(15000, 20000);
+		assertTrue(listEmpty.isEmpty());
+		List<Employee> list3_4 = company.getEmployeesBySalary(SALARY1, SALARY5);
+		Employee[] actual3_4 = list3_4.toArray(new Employee[] {});
+		Employee[] expected3_4 = {empl1, empl5};
+		Arrays.sort(actual3_4);
+		assertArrayEquals(expected3_4,actual3_4);
 	}
 
 	@Test
