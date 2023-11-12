@@ -123,22 +123,83 @@ public class InterviewTask {
 			return map;
 		}
 		public static boolean isAnagram(String string, String anagram) {
-			HashMap <Character,Integer> map = new HashMap();
-			HashMap <Character,Integer> map1 = new HashMap();
-			char [] a = string.toCharArray(); // обеспечивает простой способ преобразования строки в массив символов всего одним вызовом метода. 
-			char [] b = anagram.toCharArray();
-			boolean running = false;
-			for (char c : a)
-			{
-			  if (map.containsKey(map1))
-				{
-				 running = true;	
-				}
-			 else {
-				map.put(c, map.merge(c, 1, (x+y) -> x + y)); }
-			}
- 			return running;
-		}
-		
+	        HashMap <Character,Integer> map = new HashMap();
+	        HashMap <Character,Integer> map1 = new HashMap();
+	        char [] a = string.toCharArray(); // обеспечивает простой способ преобразования строки в массив символов всего одним вызовом метода.
+	        char [] b = anagram.toCharArray();
+	        boolean running = false;
+	        for (char c : a)
+	        {
+	            map.merge(c, 1 , (x, y) -> x + y);
+	        }
+	        for (char c : b)
+	        {
+	            map1.merge(c, 1 , (x, y) -> x + y);
+	        }
+
+
+	        for (char c : a)
+	        {
+	            if (map1.get(c) != map.get(c) || string.equals(anagram))
+	            {
+	                running = false;
+	                break;
+	            } else {
+	                running = true;
+	            }
+
+	        }
+	        return running;
+
+	    }
+		       
+		       
 	}
+
+//			
+//			
+//			    if(string.length() != anagram.length() || string.equals(anagram)) {
+//			        return false;
+//			    }
+//			    
+//			    HashMap<Character, Integer> countMap = new HashMap<>();
+//			    
+//			    for(char c : string.toCharArray()) {
+//			        countMap.put(c, countMap.getOrDefault(c, 0) + 1);
+//			    }
+//			    
+//			    for(char c : anagram.toCharArray()) {
+//			        if(countMap.containsKey(c)) {
+//			            countMap.put(c, countMap.get(c) - 1);
+//			            if(countMap.get(c) == 0) {
+//			                countMap.remove(c);
+//			            }
+//			        } else {
+//			            return false;
+//			        }
+//			    }
+//			    
+//			    return countMap.isEmpty();
+//			}
+// 			
+// 			
+//		}
+
+//			char [] a = string.toCharArray(); // обеспечивает простой способ преобразования строки в массив символов всего одним вызовом метода. 
+//			char [] b = anagram.toCharArray();
+//			int id = -1;
+//			int lCounter = 0;
+//			boolean res = false;
+//			for (char c : a) {
+//				id = anagram.indexOf(c);
+//				if(id != -1) {
+//					++lCounter;
+//					
+//				}
+//			}
+//			
+//			return res;
+//		}
+		
+	
 

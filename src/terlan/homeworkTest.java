@@ -57,8 +57,8 @@ class homeworkTest {
 	@Test
 	void isAnagramTest() {
 		String string = "yellow";
-		assertTrue(isAnagram(string, "wolely"));
-		assertTrue(isAnagram(string, "elolwy"));
+     	assertTrue(isAnagram(string, "wolely"));
+	    assertTrue(isAnagram(string, "elolwy"));
 		assertTrue(isAnagram(string, "lowely"));
 		assertTrue(isAnagram(string, "ollwey"));
 		assertFalse(isAnagram(string, "wolelw")); //not y
