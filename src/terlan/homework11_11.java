@@ -73,7 +73,7 @@ public class homework11_11 {
 			
 				map.merge(strings[i], (long) 1 , (x, y) -> x + y);
 			}
-			System.out.println(map);
+		
 			
 			//TODO should be done with complexity O[N]
 			//Optionally, additional bonus if you apply the method "merge" of the interface Map

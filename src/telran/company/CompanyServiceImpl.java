@@ -1,5 +1,7 @@
 package telran.company;
 
+import java.time.LocalDate;
+import java.util.*;
 import java.util.List;
 
 import telran.company.dto.DepartmentAvgSalary;
@@ -7,8 +9,11 @@ import telran.company.dto.Employee;
 import telran.company.dto.SalaryIntervalDistribution;
 
 public class CompanyServiceImpl implements CompanyService {
-
-	@Override
+    HashMap<Long, Employee> employeesMap = new HashMap<>();
+    HashMap<String, Set<Employee>> employessDepartment = new HashMap<>(); // key - department, value - сет служащих, работающих в этом департаменте
+    TreeMap<Integer, Set<Employee>> employeesSalary = new TreeMap<>(); // key - salary, value - сет служащих, имеющих зарплату. 
+    TreeMap<LocalDate, Set<Employee>> employeesAge = new TreeMap<>(); // key - birth, value - сет служащих, кто родился в эту жату 
+    @Override
 	/*
 	 * adds new Employee into a company
 	 * It the case an employee with the given ID already exists, 
@@ -71,43 +76,43 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
 	public List<Employee> getEmployeeByAge(int ageFrom, int ageTo) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub O[LogN]
 		return null;
 	}
 
 	@Override
 	public List<DepartmentAvgSalary> salaryDistributionByDepartments() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub O[N]
 		return null;
 	}
 
 	@Override
 	public List<SalaryIntervalDistribution> getSalaryDistribution(int interval) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub O[N]
 		return null;
 	}
 
 	@Override
 	public Employee updateDepartment(long id, String newDepartmant) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub O[1]
 		return null;
 	}
 
 	@Override
 	public Employee updateSalary(long id, int newSalary) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub O[LogN]
 		return null;
 	}
 
 	@Override
 	public void save(String filePath) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub 0[N]
 
 	}
 
 	@Override
 	public void restore(String filePath) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub O[N]
 
 	}
 
