@@ -45,7 +45,7 @@ public class InterviewTask {
       public static boolean isSum2N2(int [] ar, int sum) {
          int i = 0;
          int j = 0;
-           boolean running = true;
+         boolean running = true;
          while(i < ar.length && running) {
              j = i - 1; 
              while(j >= 0 ) {
@@ -122,6 +122,24 @@ public class InterviewTask {
 			//it uses Functional interface BiFunction
 			return map;
 		}
-
+		public static boolean isAnagram(String string, String anagram) {
+			HashMap <Character,Integer> map = new HashMap();
+			HashMap <Character,Integer> map1 = new HashMap();
+			char [] a = string.toCharArray(); // обеспечивает простой способ преобразования строки в массив символов всего одним вызовом метода. 
+			char [] b = anagram.toCharArray();
+			boolean running = false;
+			Integer value = map.get(a);
+			for (char c : a)
+			{
+			  if (map.containsKey(map1))
+				{
+				 running = true;	
+				}
+			 else {
+				map.put(c, map.merge(c, 1, (x+y) -> x + y)); }
+			}
+ 			return running;
+		}
+		
 	}
 
