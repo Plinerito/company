@@ -98,6 +98,8 @@ public class InterviewTask {
 			}
 			return l_res;
 		}
+		
+		
 
 		/**
 		 * 
@@ -110,7 +112,7 @@ public class InterviewTask {
 			for (int i=0; i < strings.length; i++ ) 
 			{
 			
-				map.merge(strings[i], (long) 1 , (x, y) -> x + y);
+				map.merge(strings[i], 1l , (x, y) -> x + y);
 			}
 		
 			
