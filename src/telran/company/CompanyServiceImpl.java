@@ -2,7 +2,6 @@ package telran.company;
 
 import java.time.LocalDate;
 import java.util.*;
-import java.util.List;
 
 import telran.company.dto.DepartmentAvgSalary;
 import telran.company.dto.Employee;
@@ -21,8 +20,41 @@ public class CompanyServiceImpl implements CompanyService {
 	 * returns reference to the being added Employee object
 	 */
 	public Employee hireEmployee(Employee empl) {
-		
+    	long id = empl.id();
+		if (employeesMap.containsKey(empl.id())) {
+			throw new IllegalStateException("Employee already exists" + id);
+		}
+		employeesMap.put(empl.id(), empl);
+		addEmployeeSalary(empl);
+		addEmployeeDepartment(empl);
+		addEmployeeAe(empl);
 		return null;
+		
+	}
+
+	private void addEmployeeAe(Employee empl) {
+		LocalDate birthdate = empl.birthDate();
+		Set<Employee> set = employeesAge.computeIfAbsent(birthdate, nk -> new HashSet<Employee>());
+		set.add(empl);
+		
+	}
+
+	private void addEmployeeDepartment(Employee empl) {
+		String department = empl.department();		
+	//	Set<Employee> set = employessDepartment.computeIfAbsent(department, k -> new HashSet<Employee>());
+	//	set.add(empl);
+		Set<Employee> set = employessDepartment.get(department);
+		if (set == null) {
+			set = new HashSet<>();
+			employessDepartment.put(department, set);
+		}
+		set.add(empl);
+	}
+
+	private void addEmployeeSalary(Employee empl) {
+	// int salary = empl.salary();
+		employeesSalary.computeIfAbsent(empl.salary(), k -> new HashSet<>())		
+		.add(empl);
 	}
 
 	@Override
@@ -34,8 +66,44 @@ public class CompanyServiceImpl implements CompanyService {
 	 * 
 	 */
 	public Employee fireEmployee(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Employee empl = employeesMap.remove(id);
+		if (empl == null) {
+			throw new IllegalStateException("Employee not found" + id);
+		}
+		removeEmployessDepatment(empl);
+		removeEmployeesSalary(empl);
+		removeEmployeesAge(empl);
+		return empl;
+	}
+
+	private void removeEmployeesAge(Employee empl) {
+		LocalDate birthDate = empl.birthDate();
+		Set<Employee> set = employeesAge.get(birthDate);
+		set.remove(empl); // removing reference to being removed employee from the set of employees with the given birth date
+		if (set.isEmpty()) {
+			employeesAge.remove(empl.birthDate());
+		}
+	}
+
+	private void removeEmployeesSalary(Employee empl) {
+		int salary = empl.salary();
+		Set<Employee> set = employeesSalary.get(salary);
+		set.remove(empl);
+		if (set.isEmpty()) {
+			employeesSalary.remove(salary);
+			
+		}
+		
+	}
+
+	private void removeEmployessDepatment(Employee empl) {
+		String department = empl.department();
+		Set<Employee> set = employessDepartment.get(department);
+		set.remove(empl);
+		if(set.isEmpty()) {
+			employessDepartment.remove(department);
+		}
+		
 	}
 
 	@Override
@@ -46,8 +114,8 @@ public class CompanyServiceImpl implements CompanyService {
 	 * 
 	 */
 	public Employee getEmployee(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return employeesMap.get(id);
 	}
 
 	@Override
@@ -58,7 +126,8 @@ public class CompanyServiceImpl implements CompanyService {
 	 * 
 	 */
 	public List<Employee> getEmployeesByDepartment(String departmant) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub O[1]
+		
 		return null;
 	}
 
