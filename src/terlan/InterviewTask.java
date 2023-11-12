@@ -128,7 +128,6 @@ public class InterviewTask {
 			char [] a = string.toCharArray(); // обеспечивает простой способ преобразования строки в массив символов всего одним вызовом метода. 
 			char [] b = anagram.toCharArray();
 			boolean running = false;
-			Integer value = map.get(a);
 			for (char c : a)
 			{
 			  if (map.containsKey(map1))
