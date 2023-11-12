@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 class homeworkTest {
 
-		private static final int N_NUMBERS = 100;
+		private static final int N_NUMBERS = 1000;
 		int [] bigArray = new int[N_NUMBERS];
 		@Test
 		@DisplayName("performance O[N] is Sum2")

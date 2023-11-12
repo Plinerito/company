@@ -43,9 +43,8 @@ public class InterviewTask {
      *  №2  0[N*N]  
      */
       public static boolean isSum2N2(int [] ar, int sum) {
-      
          int i = 0;
-          int j = 0;
+         int j = 0;
            boolean running = true;
          while(i < ar.length && running) {
              j = i - 1; 
@@ -56,8 +55,9 @@ public class InterviewTask {
              }
              j--;
            }
-         }
-         return !running;
+           i++;
+        }
+        return !running;
      }
            
            
