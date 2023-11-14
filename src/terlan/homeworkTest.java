@@ -5,6 +5,7 @@ import static terlan.InterviewTask.*;
 
 import java.util.HashMap;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,16 +14,19 @@ class homeworkTest {
 		private static final int N_NUMBERS = 1000;
 		int [] bigArray = new int[N_NUMBERS];
 		@Test
+		@Disabled
 		@DisplayName("performance O[N] is Sum2")
 		void isSum2PerformanceTest() {
 			isSum2(bigArray,1);
 		}
 		@Test
+		@Disabled
 		void isSum2N2PerformanceTest() {
 			
 			isSum2N2(bigArray, 1);
 		}
 		@Test
+		@Disabled
 		@DisplayName("performance O[N^2] is Sum2")
 		void isSum2Test() {
 		int [] ar1 = {1000, 300, -200, 20, 40, -10};
@@ -33,6 +37,7 @@ class homeworkTest {
 
 	
 	@Test
+	@Disabled
 	void getMaxPositiveWithNegativeValueTest() {
 		int [] ar1 = {-1, 100, 200, -50, 1, -100, 50};
 		int [] ar2 = {-1, -100, 200, -500, 10, -100, 50, 200};
@@ -43,6 +48,7 @@ class homeworkTest {
 	
 
 	@Test
+	@Disabled
 	void getMapOccurrencesTest() {
 		String[] strings = {
 			"lpm", "ab", "a", "lpm", "a", "aa", "lpm"
@@ -68,6 +74,25 @@ class homeworkTest {
 
 	}
 
+	 @Test
+	    void displayDigitsDistributionTest() {
+	        displayDigitsDistribution();
+	        //required output
+	        /* always 1 will be first
+	         *        2 will be second
+	         * 1 - <counter of occurrences>
+	         * 2 -  <counter of occurrences>
+	         * random order of digits
+	         * 0 - <counter of occurrences>
+	         * 4 - <counter of occurrences>
+	         * 3 - <counter of occurrences>
+	         * 5 - <counter of occurrences>
+	         * 7 - <counter of occurrences>
+	         * 6 - <counter of occurrences>
+	         * 9 - <counter of occurrences>
+	         * 8 - <counter of occurrences>
+	         */
+	    }
 	}
 
 

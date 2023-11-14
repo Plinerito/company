@@ -1,8 +1,12 @@
 package terlan;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Random;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 public class InterviewTask {
@@ -154,7 +158,7 @@ public class InterviewTask {
 	    }
 		       
 		       
-	}
+	
 
 //			
 //			
@@ -201,5 +205,41 @@ public class InterviewTask {
 //			return res;
 //		}
 		
+
+    public static void displayDigitsDistribution() {
+    int nNumbers = 1_000_000;
+    int max = Integer.MAX_VALUE;
+    //TODO
+    //create stream of random int's (nNumbers), each int number in range [1, Integer.Max_VALUE)
+    //conversion to stream of Strings
+    //extracting separate char's from Strings
+    //grouping with counting of occurrences
+    //sorting in descending order of occurrences
+    //printing
+    Random gen = new Random();
+    //gen.ints(1, max)
+   // .distinct().limit(nNumbers);
+   //  Map <String, Long> digitMap = gen.ints(nNumbers, 1, max) //flatMapToInt(str -> str.chars())
+    //		 .mapToObj(c -> "" + (char) c)
+    //		 .flatMapToInt(str -> str.chars())
+    //		 .collect(Collectors.groupingBy(s -> s, Collectors.counting()));
+    Map<String, Long> digitMap = gen.ints(nNumbers, 1, max)
+            .mapToObj(String::valueOf)
+            .flatMapToInt(str -> str.chars())
+            .mapToObj(c -> "" + (char) c)
+            .collect(Collectors.groupingBy(s -> s, Collectors.counting()));
+             digitMap.entrySet().stream()
+             .sorted((e1,e2) -> {
+            	 int res = Long.compare(e2.getValue(), e1.getValue());
+            	 if (res == 0) {
+            		 res = e1.getKey().compareTo(e2.getKey());
+            	 }
+            	 return res;
+             })
+             .forEach(e -> System.out.printf("%s => %d\n", e.getKey(),e.getValue()));
+    		
+  }
+    
+}
 	
 
