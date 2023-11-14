@@ -65,6 +65,7 @@ class StreamTests {
 	      }
     
 	 @Test 
+	 @Disabled
 	 void stringStream() {
 		 String string = "Hello";
 		 // output: h,e,l,l,o
@@ -72,7 +73,14 @@ class StreamTests {
 		 string.chars().mapToObj(c -> "" + (char)c) // conversion to Stream<String>
 		 .forEach(s -> System.out.print(s + ","));
 	 }
-	 
+	 @Test
+	 void splittingStringArray() {
+		 String [] strings = {"Hello", "World"};
+		 //output: H,e,l,l,o,W,o,r,l,d
+		 Arrays.stream(strings).flatMapToInt(str -> str.chars())
+		 .mapToObj(c -> "" + (char)c) // conversion to Stream<String>
+		 .forEach(s -> System.out.print(s + ","));
+	 }
 	
 }
 
