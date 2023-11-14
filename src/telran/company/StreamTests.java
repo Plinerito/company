@@ -127,7 +127,7 @@ class StreamTests {
 	 @Test 
 	 
 	 void stringStream() {
-		 String string = "Hello";
+		 String string = "Hello"; 
 		 // output: h,e,l,l,o    1 # способ
 		 // string.chars().forEach(c -> System.out.printf("%c,", c));
 		 string.chars().mapToObj(c -> "" + (char)c) // conversion to Stream<String>
@@ -147,6 +147,8 @@ class StreamTests {
 		 .mapToObj(c -> "" + (char)c) // conversion to Stream<String>
 		 .forEach(s -> System.out.print(s + ","));
 	 }
-	
+// flatMapToInt - что-то одно разбивается на много. То есть число разобьётся на одтельные цифры 	
+// потому что у нас будет результат не стрим строк, а стрим интежер
+// str -> str.chars()) - я получаю одну строку, а на выходе будем стрим
 }
 
